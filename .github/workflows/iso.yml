@@ -1,5 +1,6 @@
 ---
 name: Release Installer ISO
+on: push
 
 jobs:
   release_iso:
