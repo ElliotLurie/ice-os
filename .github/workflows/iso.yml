@@ -18,7 +18,7 @@ jobs:
         uses: jasonn3/build-container-installer@main
         id: build
         with:
-          flatpak_remote_refs_dir: /github/workspace/flatpaks
+          flatpak_remote_refs_dir: /github/workspace/packages/flatpaks
           image_name: ${{ github.event.repository.name }}
           image_repo: ghcr.io/${{ github.repoistory_owner }}
           iso_name: ${{ github.event.repository.name }}-${{ env.VERSION}}.iso

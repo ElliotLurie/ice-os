@@ -1,0 +1,6 @@
+atril
+firefox{,-langpacks}
+galculator
+mousepad libmousepad0
+ristretto
+xarchiver
