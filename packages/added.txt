@@ -1,2 +1,4 @@
+breeze-cursor-theme
+elementary-xfce-icon-theme
 gnome-software
 zsh{,-{autosuggestions,syntax-highlighting}}
