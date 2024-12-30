@@ -1,8 +1,8 @@
 ARG SOURCE_IMAGE="vauxite"
-ARG SOURCE_SUFFIX="main"
+ARG SOURCE_FLAVOR="main"
 ARG SOURCE_TAG="latest"
 
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${SOURCE_TAG}
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_FLAVOR}:${SOURCE_TAG}
 
 COPY rootfs /
 
