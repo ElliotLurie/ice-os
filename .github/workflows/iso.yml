@@ -1,27 +1,41 @@
 ---
 name: Release Installer ISO
-on: release
+on:
+  release:
+    type: created
 
 env:
-  VERSION: 41
+  VERSION: latest
 
 jobs:
   release_iso:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
       id-token: write
 
+    strategy:
+      matrix:
+        flavor: ["main", "nvidia"]
+
     steps:
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ github.repository_owner }}
+
       - name: Build ISO
         uses: jasonn3/build-container-installer@main
         id: build
         with:
-          flatpak_remote_refs_dir: /github/workspace/packages/flatpaks
-          image_name: ${{ github.event.repository.name }}
-          image_repo: ghcr.io/${{ github.repoistory_owner }}
-          iso_name: ${{ github.event.repository.name }}-${{ env.VERSION}}.iso
+          flatpak_remote_refs_dir: packages/flatpaks
+          image_name: ${{ github.event.repository.name }}-${{ matrix.flavor }}
+          image_repo: ghcr.io/${{ steps.registry_case.outputs.lowercase }}
+
+          iso_name: ${{ github.event.repository.name }}-${{ matrix.flavor }}-${{ github.event.release.tag_name }}.iso
           variant: xfce
           version: ${{ env.VERSION }}
 
