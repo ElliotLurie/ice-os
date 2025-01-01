@@ -2,13 +2,12 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="Greybird"/>
     <property name="IconThemeName" type="string" value="elementary-xfce"/>
   </property>
   <property name="Gtk" type="empty">
     <property name="CursorThemeName" type="string" value="breeze_cursors"/>
-    <property name="FontName" type="string" value=""e/>
-    <property name="MonospaceFontName" type="string" value=""e/>
+    <property name="FontName" type="string" value="Noto Sans 10"/>
+    <property name="MonospaceFontName" type="string" value="Hack Regular 10"/>
   </property>
   <property name="Xfce" type="empty">
     <property name="SyncThemes" type="bool" value="true"/>

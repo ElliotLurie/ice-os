@@ -2,7 +2,7 @@
 name: Release Installer ISO
 on:
   release:
-    type: created
+    type: [released]
 
 env:
   VERSION: latest

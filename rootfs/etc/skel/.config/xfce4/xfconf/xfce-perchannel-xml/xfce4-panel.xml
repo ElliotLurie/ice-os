@@ -13,6 +13,7 @@
       <property name="length-adjust" type="bool" value="true"/>
       <property name="mode" type="uint" value="0"/>
       <property name="nrows" type="uint" value="1"/>
+      <property name="output-name" type="string" value="Primary"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="1"/>
         <value type="int" value="2"/>
