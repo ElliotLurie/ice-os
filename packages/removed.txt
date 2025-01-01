@@ -1,7 +1,6 @@
 atril
 firefox{,-langpacks}
 galculator
-greybird-*
 mousepad libmousepad0
 ristretto
 xarchiver
