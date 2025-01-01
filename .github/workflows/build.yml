@@ -1,19 +1,16 @@
 ---
 name: Build Container Image
 on:
-  pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
     branches:
       - main
+      - fedora-41
     paths-ignore:
       - '**/README.md'
       - '**/.github/workflows/iso.yml'
+  schedule:
+    - cron: '05 10 * * *'  # 10:05am UTC everyday
   workflow_dispatch:
-
 env:
   MY_IMAGE_NAME: "${{ github.event.repository.name }}"  # the name of the image produced by this build, matches repo names
   MY_IMAGE_DESC: "Universal Blue Image Featuring the XFCE Destkop"
@@ -35,12 +32,15 @@ jobs:
 
     strategy:
       matrix:
+        branch: ["main", "fedora-41"]
         flavor: ["main", "nvidia"]
 
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
 
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v7
@@ -65,7 +65,7 @@ jobs:
           done
 
           BUILD_TAGS+=("${TIMESTAMP}")
-          BUILD_TAGS+=("latest")
+          BUILD_TAGS+=("${{ matrix.branch }}")
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
               echo "Generated the following commit tags: "
@@ -98,6 +98,20 @@ jobs:
             org.opencontainers.image.description=${{ env.MY_IMAGE_DESC }}
             org.opencontainers.image.title=${{ env.MY_IMAGE_NAME }}
 
+      # Resolve source tag
+      - name: Resolve Source Tag
+        id: resolve_tag
+        shell: bash
+        run: |
+          case ${{ matrix.branch }} in
+            main)
+              echo "source=latest" >> $GITHUB_OUTPUTT
+            ;;
+            fedora-41)
+              echo "source=41" >> $GITHUB_OUTPUTT
+            ;;
+          esac
+
       # Build image using Buildah action
       - name: Build Image
         id: build_image
@@ -105,6 +119,7 @@ jobs:
         with:
           build-args: |
             SOURCE_FLAVOR=${{ matrix.flavor }}
+            SOURCE_TAG=${{ steps.resolve_tag.outputs.source }}
           containerfiles: |
             ./Containerfile
           # Postfix image name with -custom to make it a little more descriptive
