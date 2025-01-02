@@ -2,5 +2,8 @@ breeze-cursor-theme
 elementary-xfce-icon-theme
 gammastep{,-indicator}
 gnome-software
+ibus{,-{chewing,hangul,m17n,mozc,uniemoji,unikey,typing-booster}}
+kvantum
+qt6ct
 source-foundry-hack-fonts
 zsh{,-{autosuggestions,syntax-highlighting}}
