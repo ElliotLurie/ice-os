@@ -1,0 +1,22 @@
+---
+name: Build Images Daily
+on:
+  schedule:
+    - cron: '05 10 * * *'  # 10:05am UTC everyday
+  workflow_dispatch:
+
+jobs:
+  build_all:
+    strategy:
+      matrix:
+        branch: ["dev", "fedora-41"]
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    uses: ./.github/workflows/build.yml
+    with:
+      branch: ${{ matrix.branch }}
+    secrets: inherit
+
