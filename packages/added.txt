@@ -4,6 +4,7 @@ gammastep{,-indicator}
 gnome-software
 ibus{,-{uniemoji,typing-booster}}
 kvantum
+menulibre
 qt6ct
 source-foundry-hack-fonts
 zsh{,-{autosuggestions,syntax-highlighting}}

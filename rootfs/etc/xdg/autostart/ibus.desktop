@@ -4,4 +4,4 @@ Exec=/usr/bin/ibus-daemon -rxRd
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name=IBus
+Name=IBus Daemon

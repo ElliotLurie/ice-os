@@ -13,7 +13,6 @@
       <property name="length-adjust" type="bool" value="true"/>
       <property name="mode" type="uint" value="0"/>
       <property name="nrows" type="uint" value="1"/>
-      <property name="output-name" type="string" value="Primary"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="1"/>
         <value type="int" value="2"/>
@@ -30,6 +29,7 @@
       <property name="size" type="uint" value="24"/>
       <property name="span-monitors" type="bool" value="false"/>
       <property name="enable-struts" type="bool" value="true"/>
+      <property name="output-name" type="string" value="Primary"/>
     </property>
     <property name="dark-mode" type="bool" value="true"/>
   </property>
@@ -51,15 +51,10 @@
       <property name="position-search-alternate" type="bool" value="true"/>
       <property name="command-switchuser" type="string" value="dm-tool switch-to-greeter"/>
       <property name="favorites" type="array">
-        <value type="string" value="xfce4-web-browser.desktop"/>
-        <value type="string" value="xfce4-mail-reader.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="org.mozilla.firefox.desktop"/>
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="org.gnome.Evolution.desktop"/>
         <value type="string" value="org.gnome.Software.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-      </property>
-      <property name="recent" type="array">
-        <value type="string" value="panel-preferences.desktop"/>
-        <value type="string" value="xfce4-file-manager.desktop"/>
       </property>
       <property name="position-profile-alternate" type="bool" value="true"/>
       <property name="position-categories-horizontal" type="bool" value="false"/>
@@ -69,6 +64,7 @@
       <property name="menu-height" type="int" value="480"/>
       <property name="hover-switch-category" type="bool" value="true"/>
       <property name="menu-opacity" type="int" value="85"/>
+      <property name="show-command-profile" type="bool" value="false"/>
     </property>
     <property name="plugin-10" type="string" value="clock">
       <property name="digital-format" type="string" value="%d %b, %H:%M"/>
@@ -109,6 +105,8 @@
       <property name="square-icons" type="bool" value="false"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="ibus-ui-gtk3"/>
+        <value type="string" value="networkmanager applet"/>
         <value type="string" value="ethernet network connection “ens3” active"/>
       </property>
     </property>
