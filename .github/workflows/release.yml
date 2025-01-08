@@ -2,10 +2,8 @@
 name: Release Installer ISO
 on:
   release:
-    type: [released]
-
-env:
-  VERSION: latest
+    types:
+      - created
 
 jobs:
   release_iso:
@@ -27,6 +25,25 @@ jobs:
         with:
           string: ${{ github.repository_owner }}
 
+      - name: Resolve Version and Tag
+        id: versioning
+        run: |
+          case ${{ github.ref_name }} in 
+            test-*)
+              echo "version=41" >> $GITHUB_OUTPUT
+              echo "tag=dev" >> $GITHUB_OUTPUT
+            ;;
+            +[1-9]-*)
+              $VERSION="${{ github.ref_name }}%%-"
+              echo "version=$VERSION" >> $GITHUB_OUTPUT
+              echo "tag=fedora-$VERSION" >> $GITHUB_OUTPUT
+            ;;
+            \*)
+              exit -1
+            ;;
+          esac
+
+
       - name: Build ISO
         uses: jasonn3/build-container-installer@main
         id: build
@@ -34,10 +51,10 @@ jobs:
           flatpak_remote_refs_dir: packages/flatpaks
           image_name: ${{ github.event.repository.name }}-${{ matrix.flavor }}
           image_repo: ghcr.io/${{ steps.registry_case.outputs.lowercase }}
-
-          iso_name: ${{ github.event.repository.name }}-${{ matrix.flavor }}-${{ github.event.release.tag_name }}.iso
-          variant: xfce
-          version: ${{ env.VERSION }}
+          image_tag: ${{ steps.versioning.outputs.tag }}
+          iso_name: ${{ github.event.repository.name }}-${{ matrix.flavor }}-${{ github.ref_name }}.iso
+          variant: Xfce
+          version: ${{ steps.versioning.outputs.version }}
 
       - name: Upload ISO as artifact
         id: upload

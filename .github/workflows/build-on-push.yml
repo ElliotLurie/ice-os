@@ -6,7 +6,7 @@ on:
       - fedora-41
     paths-ignore:
       - '**/README.md'
-      - '**/.github/workflows/iso.yml'
+      - '**/.github/workflows/release.yml'
 
 jobs:
   build_on_push:
