@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       packages: write
       id-token: write
 
@@ -29,7 +29,7 @@ jobs:
         id: versioning
         run: |
           case ${{ github.ref_name }} in 
-            test-*)
+            test*)
               echo "version=41" >> $GITHUB_OUTPUT
               echo "tag=dev" >> $GITHUB_OUTPUT
             ;;
