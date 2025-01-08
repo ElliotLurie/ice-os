@@ -1,9 +1,11 @@
 breeze-cursor-theme
 elementary-xfce-icon-theme
+florence
 gammastep{,-indicator}
 gnome-software
 ibus{,-{uniemoji,typing-booster}}
 kvantum
+lightdm-gtk-greeter-settings
 menulibre
 mint-themes{,-gtk{3,4}}
 source-foundry-hack-fonts
