@@ -6,6 +6,5 @@ ibus{,-{uniemoji,typing-booster}}
 kvantum
 menulibre
 mint-themes{,-gtk{3,4}}
-qt6ct
 source-foundry-hack-fonts
 zsh{,-{autosuggestions,syntax-highlighting}}
